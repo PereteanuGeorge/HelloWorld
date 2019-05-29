@@ -33,7 +33,7 @@ before_install:
 
 after_success:
   - chmod +x ./upload-apk.sh
-  - ./upload-apk.sh
+  - bash upload-apk.sh
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -51,20 +51,3 @@ before_script:
 script:
   - ./gradlew clean build
   - ./gradlew test
-  - ./gradlew assembleDebug
-
-deploy:
-  provider: releases
-  api-key: $GITHUB_API_KEY
-  file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
-  skip_cleanup: true
-  name: dev-build-$TRAVIS_TAG
-  body: Automatic build of $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
-  prerelease: true
-  overwrite: true
-  target_commitish: $TRAVIS_COMMIT
-  on:
-    tags: true
-
-after_deploy:
-  - rm -rf $TRAVIS_BUILD_DIR/app/build/outputs
