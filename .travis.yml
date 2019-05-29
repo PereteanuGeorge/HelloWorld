@@ -21,8 +21,16 @@ before_install:
     - export JAVA_HOME=$JAVA8_HOME
     - yes | sdkmanager "platforms;android-28"
     - touch $HOME/.android/repositories.cfg
-after_success:
-    - chmod +x ./upload-gh-pages.sh
-    - ./upload-apk.sh
 script:
-    - ./gradlew build
+    - ./gradlew assembleDebug
+deploy:
+  provider: releases
+  tag_name: $TRAVIS_TAG
+  target_commitish: $TRAVIS_COMMIT
+  name: $TRAVIS_TAG
+  api_key: $GITHUB_OAUTH_TOKEN
+  file: 'packages/mobile/android/app/build/outputs/apk/debug/app-debug.apk'
+  draft: true
+  skip_cleanup: true
+  on:
+    branch: travis-ci
