@@ -21,8 +21,11 @@ before_install:
     - export JAVA_HOME=$JAVA8_HOME
     - yes | sdkmanager "platforms;android-28"
     - touch $HOME/.android/repositories.cfg
+after_success:
+  - chmod + x ./upload-gh-pages. sh
+  - ./upload-apk.sh
 script:
-    - ./gradlew assembleDebug
+    - ./gradlew build
 deploy:
   provider: releases
   tag_name: $TRAVIS_TAG
