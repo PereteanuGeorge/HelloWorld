@@ -4,17 +4,23 @@ jdk:
 android:
   components:
     - tools
-    - build-tools-24.0.0
+    - build-tools-28.0.0
     - android-24
     - extra-android-support
     - extra-google-google_play_services
     - extra-android-m2repository
     - extra-google-m2repository
     - addon-google_apis-google-24
+licenses:
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
 before_install:
     - chmod +x gradlew
     - export JAVA8_HOME=/usr/lib/jvm/java-8-oracle
     - export JAVA_HOME=$JAVA8_HOME
+    - yes | sdkmanager "platforms;android-28"
+    - touch $HOME/.android/repositories.cfg
 after_success:
     - chmod +x ./upload-gh-pages.sh
     - ./upload-apk.sh
