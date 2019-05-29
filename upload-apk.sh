@@ -2,6 +2,7 @@
   mkdir $ HOME / buildApk /
   #copy generated apk from build folder to the folder just created
   cp -R app / build / outputs / apk / app-debug.apk $ HOME / android /
+  chmod +x ./gradlew
   #go to home and git setup
   cd $ HOME
   git config --global user.email "gp3917@ic.ac.uk"
