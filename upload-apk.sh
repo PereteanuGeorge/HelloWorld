@@ -10,6 +10,10 @@
   git clone --quiet --branch master = https: // PereteanuGeorge: $GITHUB_API_KEY@github.com/PereteanuGeorge/HelloWorld master> / dev / null
   #go into directory and copy data we're interested
   cd master cp -Rf $ HOME / android / *.
+  cd apk
+  \cp -r ../app/build/outputs/apk/*/**.apk .
+  \cp -r ../app/build/outputs/apk/debug/output.json debug-output.json
+  \cp -r ../app/build/outputs/apk/release/output.json release-output.json
   #add, commit and push files
   git add -f.
   git remote add origin https: // PereteanuGeorge: $GITHUB_API_KEY@github.com/PereteanuGeorge/HelloWorld.git
