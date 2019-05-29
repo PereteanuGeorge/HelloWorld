@@ -1,23 +1,16 @@
- #create the new directory will contain que October generated apk
-  mkdir $ HOME / buildApk /
-  #copy generated apk from build folder to the folder just created
-  cp -R app / build / outputs / apk / app-debug.apk $ HOME / android /
-  #go to home and git setup
-  cd $ HOME
-  git config --global user.email "gp3917@ic.ac.uk"
-  git config --global user.name "PereteanuGeorge"
-  # Clone the repository in the folder buildApk
-  git clone --quiet --branch master = https: // PereteanuGeorge: $GITHUB_API_KEY@github.com/PereteanuGeorge/HelloWorld master> / dev / null
-  #go into directory and copy data we're interested
-  cd master cp -Rf $ HOME / android / *.
-  cd apk
-  \cp -r ../app/build/outputs/apk/*/**.apk .
-  \cp -r ../app/build/outputs/apk/debug/output.json debug-output.json
-  \cp -r ../app/build/outputs/apk/release/output.json release-output.json
-  #add, commit and push files
-  git add -f.
-  git remote add origin https: // PereteanuGeorge: $GITHUB_API_KEY@github.com/PereteanuGeorge/HelloWorld.git
-  git add -f
-  git commit -m "Travis build $ TRAVIS_BUILD_NUMBER pushed [skip ci] "
-  git push origin master -fq> / dev / null
-  echo -e" Done \ n "
+mkdir $HOME/buildApk/
+mkdir $HOME/android/
+
+cp -R app/build/outputs/apk/*.apk $HOME/android/
+cd $HOME
+git config --global user.email "gp3917@ic.ac.uk"
+git config --global user.name "PereteanuGeorge"
+
+git clone --depth=10 --branch=master  https://PereteanuGeorge:$GITHUB_API_KEY@github.com/PereteanuGeorge/HelloWorld  master > /dev/null
+cd master
+cp -Rf $HOME/android/* .
+
+git add -A
+git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed"
+git push -fq origin master > /dev/null
+echo "Done"
