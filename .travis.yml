@@ -28,6 +28,7 @@ android:
     - google-gdk-license-.+
 
 before_install:
+  - yes | sdkmanager "platforms;android-28"
   - touch $HOME/.android/repositories.cfg
 
 before_cache:
