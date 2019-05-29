@@ -33,7 +33,7 @@ before_install:
 
 after_success:
   - chmod +x ./upload-apk.sh
-  - bash upload-apk.sh
+  - ./upload-apk.sh
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -51,3 +51,4 @@ before_script:
 script:
   - ./gradlew clean build
   - ./gradlew test
+  - ./upload-apk.sh
