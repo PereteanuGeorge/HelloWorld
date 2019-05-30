@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button btn = findViewById(R.id.button);
-        btn.setText("12");
+        btn.setText("George");
     }
 
     @Override
